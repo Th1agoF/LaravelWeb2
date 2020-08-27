@@ -14,7 +14,8 @@ class TipoProdutoController extends Controller
      */
     public function index()
     {
-        echo 'TipoProdutoController usado e chamado o método index';
+        $resourceArray = TipoProduto::all();
+        return view('tipoproduto.index')->with('resources', $resourceArray);
     }
 
     /**
@@ -38,8 +39,9 @@ class TipoProdutoController extends Controller
         $tipoProduto = new TipoProduto();
        //objeto->atributoDoBanco = requisição->'campo name que veio pelo post';
        $tipoProduto->descricao = $request->descricao;
+       // Salva os dados no banco
        $tipoProduto->save();
-       //depois que salva retorna uma view
+       //depois que salvar, retorna uma view
        return view('tipoproduto.create');
     }
 
